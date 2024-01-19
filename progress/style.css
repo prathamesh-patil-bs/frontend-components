@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
+
+:root {
+    --empty-line: #e0e0e0;
+    --filled-line: #84a98c;
+    --filled-line-2: #354f52;
+    --progress-width: 0%;
+    --line-1-zIndex: 1;
+    --line-2-zIndex: 2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 90vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.progress-container {
+    max-width: 100%;
+    width: 350px;
+    margin-bottom: 30px;
+    position: relative;
+    font-family: 'Muli' sans-serif;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-container::before {
+    content: '';
+    height: 4px;
+    width: var(--progress-width);
+    z-index: var(--line-1-zIndex);
+    display: inline-block;
+    background-color: var(--filled-line);
+    
+    left: 0;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    transition: 0.7s ease;
+}
+
+.progress-container::after {
+    content: '';
+    height: 4px;
+    width: var(--progress-width);
+    z-index: var(--line-2-zIndex);
+    display: inline-block;
+    background-color: var(--filled-line-2);
+    
+    left: 0;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    transition: 2.6s ease;
+}
+
+.progress {
+    height: 4px;
+    width: 100%;
+    background-color: var(--empty-line);
+    z-index: -1;
+    
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.step {
+    height: 35px;
+    width: 35px;
+    border: 3px solid var(--empty-line);
+    border-radius: 50%;
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    z-index: 100;
+
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+
+    transition: all 0.3s ease-in 0.3s;
+}
+
+.step.active {
+    border-color: var(--filled-line);
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: var(--filled-line);
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Muli';
+    letter-spacing: 1.5px;
+    border-radius: 11px;
+
+    transition: 0.3s ease;
+}
+
+.btn:active {
+    transform: scale(0.7);
+}
+
+.btn:disabled {
+    background-color: var(--empty-line);
+    cursor: not-allowed;
+}
